@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASBL Fraternité Mont-Amba Bomoko</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome pour les icônes professionnelles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-blue: #002D62;
@@ -14,6 +16,9 @@
             --text-dark: #333333;
             --text-light: #FFFFFF;
             --bg-light: #F8F9FA;
+            --facebook-blue: #1877F2;
+            --instagram-pink: #E4405F;
+            --green-eco: #2E7D32;
         }
 
         * {
@@ -28,6 +33,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header & Navigation */
@@ -54,25 +60,27 @@
             align-items: center;
             gap: 10px;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent-gold);
         }
 
         .logo img {
             height: 50px;
             border-radius: 50%;
+            border: 2px solid var(--accent-gold);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 15px;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: 400;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
 
@@ -88,17 +96,19 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .lang-toggle:hover {
             transform: scale(1.05);
+            background-color: #b71c1c;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 45, 98, 0.75), rgba(0, 45, 98, 0.75)), url('banniere.jpg') center/cover no-repeat;
-            height: 80vh;
+            background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('banniere.jpg') center/cover no-repeat;
+            height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,36 +118,52 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin-bottom: 1rem;
             color: var(--accent-gold);
             text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            animation: fadeInDown 1s ease-out;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
             margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 35px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            font-size: 1.05rem;
         }
 
         .btn-primary {
             background-color: var(--accent-red);
             color: white;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
         }
 
         .btn-primary:hover {
             background-color: #b71c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
         }
 
         .btn-whatsapp {
@@ -148,10 +174,13 @@
             justify-content: center;
             gap: 10px;
             margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
         .btn-whatsapp:hover {
             background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
         /* Sections General */
@@ -163,8 +192,8 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: var(--primary-blue);
             position: relative;
         }
@@ -175,8 +204,18 @@
             width: 80px;
             height: 4px;
             background-color: var(--accent-gold);
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            color: #555;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* About Section */
@@ -187,38 +226,113 @@
             align-items: center;
         }
 
-        .about-text h3 {
-            color: var(--accent-red);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
         .about-text p {
             margin-bottom: 1rem;
+            font-size: 1.1rem;
+            text-align: justify;
+            color: #444;
+        }
+
+        .president-quote {
+            background-color: white;
+            border-left: 6px solid var(--accent-gold);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .president-quote i {
+            color: var(--accent-gold);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .president-quote p {
+            font-style: italic;
+            color: var(--primary-blue);
             font-size: 1.05rem;
+            line-height: 1.8;
         }
 
-        .values-list {
-            display: flex;
-            gap: 15px;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .value-badge {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 0.9rem;
+        .president-quote strong {
+            display: block;
+            margin-top: 15px;
+            font-style: normal;
+            color: var(--accent-red);
+            font-size: 1.1rem;
         }
 
         .about-image img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             border: 5px solid white;
+            transition: transform 0.4s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Mission & Actions Section */
+        .pillars-grid, .actions-grid, .programs-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .pillars-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .actions-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .programs-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .pillar-card, .action-card, .program-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card { border-top: 5px solid var(--secondary-blue); }
+        .action-card { border-left: 5px solid var(--green-eco); }
+        .program-card { border-top: 5px solid var(--secondary-blue); text-align: center; }
+
+        .pillar-card:hover, .action-card:hover, .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .pillar-card:hover { border-top-color: var(--accent-gold); }
+        .action-card:hover { border-left-color: var(--accent-gold); }
+        .program-card:hover { border-top-color: var(--accent-gold); }
+
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .pillar-card:hover .icon-box, .program-card:hover .icon-box {
+            color: var(--accent-gold);
+        }
+
+        .action-card .icon-box {
+            color: var(--green-eco);
+            font-size: 2rem;
+        }
+
+        .action-card:hover .icon-box {
+            color: var(--accent-gold);
+        }
+
+        .pillar-card h4, .action-card h4, .program-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
         }
 
         /* Event Section */
@@ -227,58 +341,129 @@
             text-align: center;
             padding: 4rem 2rem;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-bottom: 3rem;
+            border: 1px solid #eee;
         }
 
         .event-poster {
             max-width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             margin-top: 2rem;
+            transition: transform 0.4s ease;
         }
 
-        /* Programs Section */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+        .event-poster:hover {
+            transform: scale(1.01);
         }
 
-        .program-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
+        /* Partner Section */
+        .partner-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid var(--secondary-blue);
+            padding: 5rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 5rem;
+            box-shadow: 0 15px 40px rgba(0, 45, 98, 0.3);
         }
 
-        .program-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-top-color: var(--accent-gold);
-        }
-
-        .program-icon {
+        .partner-section h2 {
+            color: var(--accent-gold);
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .program-card h4 {
+        .partner-section p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-partner {
+            background-color: var(--accent-gold);
             color: var(--primary-blue);
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+        }
+
+        .btn-partner:hover {
+            background-color: white;
+            transform: translateY(-3px);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #f0f4f8;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: #555;
+            display: none;
+            border-top: 1px solid #eee;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        /* Map Section */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
         }
 
         /* Registration Form */
         .registration-section {
             background-color: var(--primary-blue);
             color: white;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 4rem;
             margin-bottom: 5rem;
+            box-shadow: 0 15px 40px rgba(0, 45, 98, 0.2);
         }
 
         .registration-section .section-title {
@@ -302,18 +487,20 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .form-group input, 
         .form-group select, 
         .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 5px;
+            border-radius: 8px;
             background-color: rgba(255,255,255,0.1);
             color: white;
             font-size: 1rem;
+            transition: all 0.3s;
         }
 
         .form-group input::placeholder, 
@@ -331,6 +518,7 @@
             outline: none;
             border-color: var(--accent-gold);
             background-color: rgba(255,255,255,0.15);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
         }
 
         /* Footer */
@@ -338,7 +526,7 @@
             background-color: #1a1a1a;
             color: #ccc;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
         }
 
         footer p {
@@ -346,34 +534,56 @@
         }
 
         .social-links {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .social-links a {
-            color: var(--accent-gold);
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: white !important;
             text-decoration: none;
-            margin: 0 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .social-btn.facebook { background-color: var(--facebook-blue); }
+        .social-btn.facebook:hover { background-color: #0d65d9; }
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        .social-btn.instagram:hover { opacity: 0.9; }
+        .social-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { order: -1; }
+        }
+
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-            .registration-section {
-                padding: 2rem;
-            }
+            .nav-container { flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .hero-content p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .registration-section, .partner-section { padding: 2.5rem 1.5rem; }
+            .social-links { flex-direction: column; align-items: center; }
+            .faq-question { font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -390,36 +600,38 @@
                 <ul>
                     <li><a href="#home" data-i18n="nav_home">Accueil</a></li>
                     <li><a href="#about" data-i18n="nav_about">À propos</a></li>
-                    <li><a href="#event" data-i18n="nav_event">Événement</a></li>
+                    <li><a href="#mission" data-i18n="nav_mission">Mission</a></li>
+                    <li><a href="#actions" data-i18n="nav_actions">Actions</a></li>
                     <li><a href="#programs" data-i18n="nav_programs">Formations</a></li>
-                    <li><a href="#register" data-i18n="nav_register">S'inscrire</a></li>
+                    <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+                    <li><a href="#register" data-i18n="nav_register">Rejoindre</a></li>
                 </ul>
             </nav>
             <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">Lingala / FR</button>
         </div>
     </header>
 
-    <!-- Hero Section (Image: banniere.jpg) -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 data-i18n="hero_title">ASBL Fraternité Mont-Amba Bomoko</h1>
-            <p data-i18n="hero_subtitle">Former aujourd'hui, bâtir demain. Unis pour bâtir un avenir meilleur dans l'amour, le travail et la discipline.</p>
-            <a href="#register" class="btn btn-primary" data-i18n="hero_btn">S'inscrire maintenant</a>
+            <p data-i18n="hero_subtitle">Unis pour bâtir un avenir meilleur dans l'amour, le travail et la discipline. Ensemble, transformons notre communauté.</p>
+            <a href="#register" class="btn btn-primary" data-i18n="hero_btn">Rejoignez le mouvement</a>
         </div>
     </section>
 
-    <!-- About Section (Image: president.jpg) -->
+    <!-- About Section -->
     <section id="about">
         <h2 class="section-title" data-i18n="about_title">Qui sommes-nous ?</h2>
         <div class="about-grid">
             <div class="about-text">
-                <h3 data-i18n="about_subtitle">Notre Mission</h3>
-                <p data-i18n="about_p1">L'ASBL Fraternité Mont-Amba Bomoko est une organisation dédiée à la formation professionnelle et à l'autonomisation des jeunes. Sous la présidence de Hardy Luka Ngoyi, nous croyons en un avenir meilleur construit sur des valeurs solides.</p>
-                <p data-i18n="about_p2">Nous offrons des formations pratiques pour préparer la jeunesse aux défis du marché du travail et encourager l'entrepreneuriat.</p>
-                <div class="values-list">
-                    <span class="value-badge" data-i18n="value_love">❤️ Amour</span>
-                    <span class="value-badge" data-i18n="value_work">⚙️ Travail</span>
-                    <span class="value-badge" data-i18n="value_discipline">✅ Discipline</span>
+                <p data-i18n="about_p1">Bienvenue sur la page officielle de l'ASBL Fraternité Mont-Amba Bomoko, une organisation à but non lucratif ancrée au cœur du district de Mont-Amba à Kinshasa.</p>
+                <p data-i18n="about_p2">Portés par des valeurs fortes d'unité, de solidarité et de progrès partagé, nous unissons les forces vives de nos communes pour bâtir un environnement plus propre, plus juste et plus dynamique.</p>
+                
+                <div class="president-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p data-i18n="president_msg">Chers membres et sympathisants, notre district de Mont-Amba possède un potentiel immense. Notre mission à travers cette ASBL est de transformer ce potentiel en réalité. Nous nous engageons à promouvoir la solidarité, à encadrer notre jeunesse et à assainir notre environnement. Rejoignez-nous dans cette noble cause pour bâtir un avenir meilleur.</p>
+                    <strong>Hardy Luka Ngoyi, <span data-i18n="president_title">Président de l'ASBL</span></strong>
                 </div>
             </div>
             <div class="about-image">
@@ -428,7 +640,92 @@
         </div>
     </section>
 
-    <!-- Event Section (Image: affiche_graduation.jpg) -->
+    <!-- Mission Section -->
+    <section id="mission" style="background-color: white;">
+        <h2 class="section-title" data-i18n="mission_title">Notre Mission & Vision</h2>
+        <p class="section-subtitle" data-i18n="mission_subtitle">Notre action se déploie à travers des axes stratégiques majeurs pour transformer positivement nos quartiers (Lemba, Matete, Ngaba, Kisenso, etc.) :</p>
+        
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fas fa-handshake"></i></div>
+                <h4 data-i18n="pillar1_title">Solidarité & Unité</h4>
+                <p data-i18n="pillar1_desc">Fédérer les communautés du Mont-Amba à travers des initiatives d'entraide et briser l'isolement des plus vulnérables.</p>
+            </div>
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fas fa-users"></i></div>
+                <h4 data-i18n="pillar2_title">Encadrement de la Jeunesse</h4>
+                <p data-i18n="pillar2_desc">Mobiliser, former et responsabiliser les jeunes à travers des brigades citoyennes et des activités culturelles et éducatives.</p>
+            </div>
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fas fa-leaf"></i></div>
+                <h4 data-i18n="pillar3_title">Salubrité & Environnement</h4>
+                <p data-i18n="pillar3_desc">Assurer un rôle actif dans l'assainissement urbain par la sensibilisation, la lutte contre les décharges sauvages et le soutien à la gestion des déchets.</p>
+            </div>
+            <div class="pillar-card">
+                <div class="icon-box"><i class="fas fa-city"></i></div>
+                <h4 data-i18n="pillar4_title">Développement Local</h4>
+                <p data-i18n="pillar4_desc">Collaborer avec les institutions publiques et les leaders locaux pour moderniser l'accès aux infrastructures de base.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Actions Section -->
+    <section id="actions">
+        <h2 class="section-title" data-i18n="actions_title">Nos Actions sur le Terrain</h2>
+        <p class="section-subtitle" data-i18n="actions_subtitle">Nous traduisons nos valeurs par des interventions directes face aux urgences du quotidien kinois :</p>
+        
+        <div class="actions-grid">
+            <div class="action-card">
+                <div class="icon-box"><i class="fas fa-broom"></i></div>
+                <h4 data-i18n="action1_title">Brigades Vertes de Propreté</h4>
+                <p data-i18n="action1_desc">Déploiement de jeunes bénévoles pour le curage des caniveaux et la sensibilisation au respect de l'espace public le long des grands axes comme l'avenue de l'Université.</p>
+            </div>
+            <div class="action-card">
+                <div class="icon-box"><i class="fas fa-trash-alt"></i></div>
+                <h4 data-i18n="action2_title">Soutien à la gestion des déchets</h4>
+                <p data-i18n="action2_desc">Plaidoyer et intermédiation pour doter les avenues de poubelles publiques adaptées et encourager le civisme fiscal environnemental.</p>
+            </div>
+            <div class="action-card">
+                <div class="icon-box"><i class="fas fa-theater-masks"></i></div>
+                <h4 data-i18n="action3_title">Rassemblements Communautaires</h4>
+                <p data-i18n="action3_desc">Organisation d'événements culturels et citoyens visant à renforcer la cohésion sociale et à valoriser les talents de notre jeunesse.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" style="background-color: white;">
+        <h2 class="section-title" data-i18n="programs_title">Nos Filières de Formation</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <div class="icon-box"><i class="fas fa-car"></i></div>
+                <h4>Auto-école</h4>
+                <p data-i18n="prog_auto">Apprenez à conduire et préparez votre permis.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon-box"><i class="fas fa-cut"></i></div>
+                <h4>Coupe et Couture</h4>
+                <p data-i18n="prog_couture">Maîtrisez l'art de la création vestimentaire.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon-box"><i class="fas fa-spa"></i></div>
+                <h4>Esthétique</h4>
+                <p data-i18n="prog_esthetique">Formation aux soins de beauté et bien-être.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon-box"><i class="fas fa-scissors"></i></div>
+                <h4>Coiffure</h4>
+                <p data-i18n="prog_coiffure">Techniques modernes de coiffure pour hommes et femmes.</p>
+            </div>
+            <div class="program-card">
+                <div class="icon-box"><i class="fas fa-hand-sparkles"></i></div>
+                <h4>Manucure</h4>
+                <p data-i18n="prog_manucure">Soins des ongles et prothèses ongulaires.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Section -->
     <section id="event" style="padding-top: 0;">
         <h2 class="section-title" data-i18n="event_title">Annonce Importante</h2>
         <div class="event-section">
@@ -441,41 +738,74 @@
         </div>
     </section>
 
-    <!-- Programs Section -->
-    <section id="programs" style="background-color: white;">
-        <h2 class="section-title" data-i18n="programs_title">Nos Filières de Formation</h2>
-        <div class="programs-grid">
-            <div class="program-card">
-                <div class="program-icon">🚗</div>
-                <h4>Auto-école</h4>
-                <p data-i18n="prog_auto">Apprenez à conduire et préparez votre permis.</p>
+    <!-- Partner Section -->
+    <section class="partner-section">
+        <h2 data-i18n="partner_title">Devenir Partenaire</h2>
+        <p data-i18n="partner_desc">Vous êtes une entreprise, une ONG ou une institution ? Unissez vos forces aux nôtres pour un impact social durable à Mont-Amba. Ensemble, nous pouvons aller plus loin.</p>
+        <a href="https://wa.me/243896689871?text=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20de%20l'ASBL%20Fraternit%C3%A9%20Mont-Amba%20Bomoko" target="_blank" class="btn btn-partner">
+            <i class="fas fa-handshake"></i> <span data-i18n="partner_btn">Discuter d'un Partenariat</span>
+        </a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background-color: white;">
+        <h2 class="section-title" data-i18n="faq_title">Foire Aux Questions</h2>
+        <p class="section-subtitle" data-i18n="faq_subtitle">Tout ce que vous devez savoir avant de nous rejoindre.</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq_q1">Qui peut s'inscrire aux formations ?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a1">Nos formations sont ouvertes à tous les jeunes de Mont-Amba et d'ailleurs, sans distinction. Il suffit d'être motivé et prêt à apprendre.</p>
+                </div>
             </div>
-            <div class="program-card">
-                <div class="program-icon">✂️</div>
-                <h4>Coupe et Couture</h4>
-                <p data-i18n="prog_couture">Maîtrisez l'art de la création vestimentaire.</p>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq_q2">Où se déroulent les cours et les activités ?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a2">Nos activités et formations se déroulent au Pavillon 22, dans l'enceinte de la FIKIN, à Lemba, Kinshasa. (Voir la carte ci-dessous).</p>
+                </div>
             </div>
-            <div class="program-card">
-                <div class="program-icon">✨</div>
-                <h4>Esthétique</h4>
-                <p data-i18n="prog_esthetique">Formation aux soins de beauté et bien-être.</p>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq_q3">Comment participer aux Brigades Vertes ?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a3">Pour rejoindre les Brigades Vertes de Propreté, il vous suffit de remplir le formulaire d'inscription ci-dessous en sélectionnant "Devenir bénévole".</p>
+                </div>
             </div>
-            <div class="program-card">
-                <div class="program-icon">💈</div>
-                <h4>Coiffure</h4>
-                <p data-i18n="prog_coiffure">Techniques modernes de coiffure pour hommes et femmes.</p>
-            </div>
-            <div class="program-card">
-                <div class="program-icon">💅</div>
-                <h4>Manucure</h4>
-                <p data-i18n="prog_manucure">Soins des ongles et prothèses ongulaires.</p>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span data-i18n="faq_q4">Les formations sont-elles payantes ?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq_a4">En tant qu'ASBL, nos formations sont à des prix très accessibles. Certaines activités de bénévolat sont entièrement gratuites. Contactez-nous pour plus de détails.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Registration Section -->
+    <!-- Google Maps Section -->
+    <section id="map" style="padding-top: 0;">
+        <h2 class="section-title" data-i18n="map_title">Nous Trouver</h2>
+        <div class="map-container">
+            <!-- Carte Google Maps centrée sur FIKIN, Lemba, Kinshasa -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.262741002245!2d15.308825!3d-4.37625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a30f0f0f0f0f0%3A0x0!2sFIKIN!5e0!3m2!1sfr!2scd!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Registration / Join Section -->
     <section id="register" class="registration-section">
-        <h2 class="section-title" data-i18n="reg_title">Inscription en ligne</h2>
+        <h2 class="section-title" data-i18n="reg_title">Rejoignez le Mouvement !</h2>
+        <p style="text-align: center; margin-bottom: 2rem;" data-i18n="reg_subtitle">Que vous soyez habitant du Mont-Amba, partenaire de développement, ou simple citoyen désireux d'apporter votre pierre à l'édifice, votre place est à nos côtés.</p>
+        
         <div class="form-container">
             <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
                 <div class="form-group">
@@ -487,14 +817,17 @@
                     <input type="tel" id="phone" required placeholder="Ex: +243 8XX XXX XXX">
                 </div>
                 <div class="form-group">
-                    <label for="program" data-i18n="form_program">Choisissez une formation</label>
+                    <label for="address" data-i18n="form_address">Commune / Adresse</label>
+                    <input type="text" id="address" required placeholder="Ex: Lemba, Matete, Ngaba...">
+                </div>
+                <div class="form-group">
+                    <label for="program" data-i18n="form_program">Je souhaite :</label>
                     <select id="program" required>
                         <option value="" disabled selected data-i18n="form_select">-- Sélectionnez --</option>
-                        <option value="Auto-école">Auto-école</option>
-                        <option value="Coupe et Couture">Coupe et Couture</option>
-                        <option value="Esthétique">Esthétique</option>
-                        <option value="Coiffure">Coiffure</option>
-                        <option value="Manucure">Manucure</option>
+                        <option value="M'inscrire à une formation">M'inscrire à une formation</option>
+                        <option value="Devenir bénévole (Brigades Vertes)">Devenir bénévole (Brigades Vertes)</option>
+                        <option value="Devenir partenaire">Devenir partenaire</option>
+                        <option value="Autre demande">Autre demande</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -502,7 +835,7 @@
                     <textarea id="message" rows="3" placeholder="..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-whatsapp" style="width: 100%; font-size: 1.1rem;">
-                    <span data-i18n="form_submit">Envoyer via WhatsApp</span>
+                    <i class="fab fa-whatsapp"></i> <span data-i18n="form_submit">Envoyer via WhatsApp</span>
                 </button>
             </form>
         </div>
@@ -512,53 +845,122 @@
     <footer>
         <p>&copy; 2024 ASBL FRATERNITÉ MONT-AMBA BOMOKO. Tous droits réservés.</p>
         <p>Président: Hardy Luka Ngoyi</p>
+        
         <div class="social-links">
-            <a href="#">Facebook: Faternite Mont Amba Bomoko</a> | 
-            <a href="#">Instagram: @faternite_mont_amba_bomoko</a>
+            <a href="https://www.facebook.com/share/1Ct1VCFEpq/" target="_blank" class="social-btn facebook" aria-label="Facebook ASBL Framabo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/asbl.framabo" target="_blank" class="social-btn instagram" aria-label="Instagram ASBL Framabo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <span>Instagram</span>
+            </a>
         </div>
     </footer>
 
-    <!-- JavaScript for Bilingual Translation and WhatsApp Integration -->
+    <!-- JavaScript for Bilingual Translation, FAQ, and WhatsApp Integration -->
     <script>
         const translations = {
             fr: {
-                nav_home: "Accueil", nav_about: "À propos", nav_event: "Événement", nav_programs: "Formations", nav_register: "S'inscrire",
+                nav_home: "Accueil", nav_about: "À propos", nav_mission: "Mission", nav_actions: "Actions", nav_programs: "Formations", nav_faq: "FAQ", nav_register: "Rejoindre",
                 hero_title: "ASBL Fraternité Mont-Amba Bomoko",
-                hero_subtitle: "Former aujourd'hui, bâtir demain. Unis pour bâtir un avenir meilleur dans l'amour, le travail et la discipline.",
-                hero_btn: "S'inscrire maintenant",
-                about_title: "Qui sommes-nous ?", about_subtitle: "Notre Mission",
-                about_p1: "L'ASBL Fraternité Mont-Amba Bomoko est une organisation dédiée à la formation professionnelle et à l'autonomisation des jeunes. Sous la présidence de Hardy Luka Ngoyi, nous croyons en un avenir meilleur construit sur des valeurs solides.",
-                about_p2: "Nous offrons des formations pratiques pour préparer la jeunesse aux défis du marché du travail et encourager l'entrepreneuriat.",
-                value_love: "❤️ Amour", value_work: "⚙️ Travail", value_discipline: "✅ Discipline",
-                event_title: "Annonce Importante", event_subtitle: "Première Collation - Cérémonie de Graduation",
-                event_desc: "Le Centre de Formation Professionnelle et de Métiers - ASBL Fraternité Mont Amba Bomoko a le plaisir de vous annoncer sa première cérémonie de graduation.",
-                event_date: "Date : Samedi 31 Octobre 2026 à 10h00", event_location: "Lieu : Pavillon 22, enceinte FIKIN, Kinshasa",
+                hero_subtitle: "Unis pour bâtir un avenir meilleur dans l'amour, le travail et la discipline. Ensemble, transformons notre communauté.",
+                hero_btn: "Rejoignez le mouvement",
+                about_title: "Qui sommes-nous ?",
+                about_p1: "Bienvenue sur la page officielle de l'ASBL Fraternité Mont-Amba Bomoko, une organisation à but non lucratif ancrée au cœur du district de Mont-Amba à Kinshasa.",
+                about_p2: "Portés par des valeurs fortes d'unité, de solidarité et de progrès partagé, nous unissons les forces vives de nos communes pour bâtir un environnement plus propre, plus juste et plus dynamique.",
+                president_msg: "Chers membres et sympathisants, notre district de Mont-Amba possède un potentiel immense. Notre mission à travers cette ASBL est de transformer ce potentiel en réalité. Nous nous engageons à promouvoir la solidarité, à encadrer notre jeunesse et à assainir notre environnement. Rejoignez-nous dans cette noble cause pour bâtir un avenir meilleur.",
+                president_title: "Président de l'ASBL",
+                mission_title: "Notre Mission & Vision",
+                mission_subtitle: "Notre action se déploie à travers des axes stratégiques majeurs pour transformer positivement nos quartiers (Lemba, Matete, Ngaba, Kisenso, etc.) :",
+                pillar1_title: "Solidarité & Unité",
+                pillar1_desc: "Fédérer les communautés du Mont-Amba à travers des initiatives d'entraide et briser l'isolement des plus vulnérables.",
+                pillar2_title: "Encadrement de la Jeunesse",
+                pillar2_desc: "Mobiliser, former et responsabiliser les jeunes à travers des brigades citoyennes et des activités culturelles et éducatives.",
+                pillar3_title: "Salubrité & Environnement",
+                pillar3_desc: "Assurer un rôle actif dans l'assainissement urbain par la sensibilisation, la lutte contre les décharges sauvages et le soutien à la gestion des déchets.",
+                pillar4_title: "Développement Local",
+                pillar4_desc: "Collaborer avec les institutions publiques et les leaders locaux pour moderniser l'accès aux infrastructures de base.",
+                actions_title: "Nos Actions sur le Terrain",
+                actions_subtitle: "Nous traduisons nos valeurs par des interventions directes face aux urgences du quotidien kinois :",
+                action1_title: "Brigades Vertes de Propreté",
+                action1_desc: "Déploiement de jeunes bénévoles pour le curage des caniveaux et la sensibilisation au respect de l'espace public le long des grands axes comme l'avenue de l'Université.",
+                action2_title: "Soutien à la gestion des déchets",
+                action2_desc: "Plaidoyer et intermédiation pour doter les avenues de poubelles publiques adaptées et encourager le civisme fiscal environnemental.",
+                action3_title: "Rassemblements Communautaires",
+                action3_desc: "Organisation d'événements culturels et citoyens visant à renforcer la cohésion sociale et à valoriser les talents de notre jeunesse.",
                 programs_title: "Nos Filières de Formation",
                 prog_auto: "Apprenez à conduire et préparez votre permis.", prog_couture: "Maîtrisez l'art de la création vestimentaire.",
                 prog_esthetique: "Formation aux soins de beauté et bien-être.", prog_coiffure: "Techniques modernes de coiffure pour hommes et femmes.",
                 prog_manucure: "Soins des ongles et prothèses ongulaires.",
-                reg_title: "Inscription en ligne", form_name: "Nom complet", form_phone: "Numéro de téléphone",
-                form_program: "Choisissez une formation", form_select: "-- Sélectionnez --", form_message: "Message (Optionnel)",
+                event_title: "Annonce Importante", event_subtitle: "Première Collation - Cérémonie de Graduation",
+                event_desc: "Le Centre de Formation Professionnelle et de Métiers - ASBL Fraternité Mont Amba Bomoko a le plaisir de vous annoncer sa première cérémonie de graduation.",
+                event_date: "Date : Samedi 31 Octobre 2026 à 10h00", event_location: "Lieu : Pavillon 22, enceinte FIKIN, Kinshasa",
+                partner_title: "Devenir Partenaire",
+                partner_desc: "Vous êtes une entreprise, une ONG ou une institution ? Unissez vos forces aux nôtres pour un impact social durable à Mont-Amba. Ensemble, nous pouvons aller plus loin.",
+                partner_btn: "Discuter d'un Partenariat",
+                faq_title: "Foire Aux Questions",
+                faq_subtitle: "Tout ce que vous devez savoir avant de nous rejoindre.",
+                faq_q1: "Qui peut s'inscrire aux formations ?", faq_a1: "Nos formations sont ouvertes à tous les jeunes de Mont-Amba et d'ailleurs, sans distinction. Il suffit d'être motivé et prêt à apprendre.",
+                faq_q2: "Où se déroulent les cours et les activités ?", faq_a2: "Nos activités et formations se déroulent au Pavillon 22, dans l'enceinte de la FIKIN, à Lemba, Kinshasa. (Voir la carte ci-dessous).",
+                faq_q3: "Comment participer aux Brigades Vertes ?", faq_a3: "Pour rejoindre les Brigades Vertes de Propreté, il vous suffit de remplir le formulaire d'inscription ci-dessous en sélectionnant 'Devenir bénévole'.",
+                faq_q4: "Les formations sont-elles payantes ?", faq_a4: "En tant qu'ASBL, nos formations sont à des prix très accessibles. Certaines activités de bénévolat sont entièrement gratuites. Contactez-nous pour plus de détails.",
+                map_title: "Nous Trouver",
+                reg_title: "Rejoignez le Mouvement !",
+                reg_subtitle: "Que vous soyez habitant du Mont-Amba, partenaire de développement, ou simple citoyen désireux d'apporter votre pierre à l'édifice, votre place est à nos côtés.",
+                form_name: "Nom complet", form_phone: "Numéro de téléphone", form_address: "Commune / Adresse",
+                form_program: "Je souhaite :", form_select: "-- Sélectionnez --", form_message: "Message (Optionnel)",
                 form_submit: "Envoyer via WhatsApp"
             },
             ln: {
-                nav_home: "Ndaku", nav_about: "Na ntina ya", nav_event: "Likita", nav_programs: "Mateya", nav_register: "Komikomisa",
+                nav_home: "Ndaku", nav_about: "Na ntina ya", nav_mission: "Mokano", nav_actions: "Misala", nav_programs: "Mateya", nav_faq: "FAQ", nav_register: "Kosangana",
                 hero_title: "ASBL Fraternité Mont-Amba Bomoko",
-                hero_subtitle: "Koteya lelo, kotonga lobi. Bomoko mpo na kobotama na bomengo na bolingo, mosala mpe botosi.",
-                hero_btn: "Komikomisa sikoyo",
-                about_title: "Biso banani ?", about_subtitle: "Mokano na biso",
-                about_p1: "ASBL Fraternité Mont-Amba Bomoko ezali lingomba mpo na mateya ya misala mpe kokómisa bilenge na bokási. Na bokambi ya Hardy Luka Ngoyi, bondimi na lobi ya kitoko na bolingo, mosala mpe botosi.",
-                about_p2: "To pesaka mateya ya mosala mpo na kobongisa bilenge na mikakatano ya mosala mpe kolendisa misala ya maboko.",
-                value_love: "❤️ Bolingo", value_work: "⚙️ Mosala", value_discipline: "✅ Botosi",
-                event_title: "Nsango ya ntina", event_subtitle: "Likita ya liboso - Remise ya ba diplômes",
-                event_desc: "Centre de Formation Professionnelle et de Métiers - ASBL Fraternité Mont Amba Bomoko esepeli koyebisa bino likita na yango ya liboso ya remise ya ba diplômes.",
-                event_date: "Mokolo : Samedi 31 Octobre 2026 na 10h00", event_location: "Esika : Pavillon 22, na kati ya FIKIN, Kinshasa",
+                hero_subtitle: "Bomoko mpo na kobotama na bomengo na bolingo, mosala mpe botosi. Tika ete tobongisa bomoko na biso.",
+                hero_btn: "Boya kosangana na biso",
+                about_title: "Biso banani ?",
+                about_p1: "Boyeyi malamu na lokasa ya leta ya ASBL Fraternité Mont-Amba Bomoko, lingomba ya bolamu o kati ya distrike ya Mont-Amba na Kinshasa.",
+                about_p2: "Na bomoko, lisanga mpe botomboli ya bato nyonso, tosangisi makoki ya bato na biso mpo na kotonga mboka ya bopeto mpe ya bosembo.",
+                president_msg: "Bandeko mpe baninga na biso ya kitoko, distrike na biso ya Mont-Amba ezali na makoki ya monene. Mokano na biso na ASBL oyo ezali kobongisa makoki wana na misala ya solo. Tosepeli kosangisa bino nyonso mpo na kosunga bilenge, kobatela mboka mpe kopesa bomengo na bato. Boya kosangana na biso na mosala oyo ya kitoko mpo na kobotama lobi ya malamu.",
+                president_title: "Prezida ya ASBL",
+                mission_title: "Mokano mpe Emoneli na biso",
+                mission_subtitle: "Misala na biso ezali kokende na nzela ya mikano ya ntina mpo na kobongisa bandako na biso (Lemba, Matete, Ngaba, Kisenso, etc.) :",
+                pillar1_title: "Lisanga mpe Bomoko",
+                pillar1_desc: "Kosangisa bato ya Mont-Amba na misala ya lisungi mpe koboma bozangi ya bato ya mawa.",
+                pillar2_title: "Kokamba Bilenge",
+                pillar2_desc: "Kotombola, koyekola mpe kopesa mikumba na bilenge na misala ya mboka mpe ya bonkoko.",
+                pillar3_title: "Bopeto mpe Ezaleli ya mokili",
+                pillar3_desc: "Kosala mosala ya bopeto na mboka na nzela ya koyebisa bato mpe kobundisa bosoto.",
+                pillar4_title: "Botomboli ya Mboka",
+                pillar4_desc: "Kosala elongo na bakonzi ya mboka mpe ba institutions mpo na kobongisa nzela ya bomengo.",
+                actions_title: "Misala na biso na maboko",
+                actions_subtitle: "Tozali kosala misala ya maboko mpo na kokutana na mikakatano ya mokolo na mokolo :",
+                action1_title: "Brigades Vertes ya Bopeto",
+                action1_desc: "Kotinda bilenge ya bolamu mpo na kolongola bosoto na balabala mpe koyebisa bato ntina ya bopeto.",
+                action2_title: "Lisungi na kokamba bosoto",
+                action2_desc: "Kosala mosala mpo na kopesa ba poubelles ya bopeto na babalabala mpe kotombola bopeto.",
+                action3_title: "Likita ya Bato",
+                action3_desc: "Kosala ba événements ya bonkoko mpe ya mboka mpo na kolendisa bomoko mpe komonisa makoki ya bilenge.",
                 programs_title: "Mateya na biso",
                 prog_auto: "Koyekola kotambwisa motuka mpe kozwa permis.", prog_couture: "Koyekola kosala bilamba ya kitoko.",
                 prog_esthetique: "Mateya ya kobongisa kitoko ya nzoto.", prog_coiffure: "Makoki ya sika ya kosala nsuki mpo na mibali mpe basi.",
                 prog_manucure: "Kobongisa manucure mpe misala ya minoko.",
-                reg_title: "Komikomisa na internet", form_name: "Nkombo mobimba", form_phone: "Telefone",
-                form_program: "Pona mateya", form_select: "-- Pona --", form_message: "Nsango (Soki olingi)",
+                event_title: "Nsango ya ntina", event_subtitle: "Likita ya liboso - Remise ya ba diplômes",
+                event_desc: "Centre de Formation Professionnelle et de Métiers - ASBL Fraternité Mont Amba Bomoko esepeli koyebisa bino likita na yango ya liboso ya remise ya ba diplômes.",
+                event_date: "Mokolo : Samedi 31 Octobre 2026 na 10h00", event_location: "Esika : Pavillon 22, na kati ya FIKIN, Kinshasa",
+                partner_title: "Kosangana na biso",
+                partner_desc: "Soki bozali entreprise, ONG to institution, boya kosangisa makoki na bino na biso mpo na kosunga mboka Mont-Amba. Elongo, tokoki kokende mosika.",
+                partner_btn: "Kosala lisolo ya lisanga",
+                faq_title: "Foire Aux Questions",
+                faq_subtitle: "Makambo oyo esengeli koyeba liboso ya kosangana na biso.",
+                faq_q1: "Nani akoki komikomisa na mateya ?", faq_a1: "Mateya na biso ezali ya bilenge nyonso ya Mont-Amba mpe bisika mosusu. Esengeli kaka kozala na mposa ya koyekola.",
+                faq_q2: "Wapi mateya mpe misala ezali kosalema ?", faq_a2: "Misala mpe mateya na biso ezali kosalema na Pavillon 22, na kati ya FIKIN, na Lemba, Kinshasa. (Tala carte na nse).",
+                faq_q3: "Ndenge nini nakoki kosangana na Brigades Vertes ?", faq_a3: "Mpo na kosangana na Brigades Vertes, esengeli kaka kotondisa fomulaire na nse mpe kopona 'Devenir bénévole'.",
+                faq_q4: "Mateya ezali na mbongo ?", faq_a4: "Lokola tozali ASBL, mateya na biso ezali na mbongo moke mpenza. Misala mosusu ya bolamu ezali ofele. Bende kosolola na biso mpo na makambo mingi.",
+                map_title: "Esika na biso",
+                reg_title: "Boya kosangana na biso !",
+                reg_subtitle: "Soki ozali mwasi ya Mont-Amba, moninga ya misala, to mwana ya mboka olingi kosunga, esika na yo ezali pembeni na biso.",
+                form_name: "Nkombo mobimba", form_phone: "Telefone", form_address: "Komini / Adresse",
+                form_program: "Nalingi :", form_select: "-- Pona --", form_message: "Nsango (Soki olingi)",
                 form_submit: "Tinda na WhatsApp"
             }
         };
@@ -579,20 +981,27 @@
             document.getElementById('langBtn').innerText = currentLang === 'fr' ? 'Lingala / FR' : 'Français / LN';
         }
 
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
         function sendToWhatsApp(event) {
             event.preventDefault();
 
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
             const program = document.getElementById('program').value;
             const message = document.getElementById('message').value;
 
             const coordinatorNumber = "243896689871";
 
-            let text = `*Nouvelle Inscription / Komikomisa ya sika*%0A%0A`;
+            let text = `*Nouvelle Demande / Lisungi ya sika*%0A%0A`;
             text += `*Nkombo / Nom:* ${name}%0A`;
             text += `*Telefone / Téléphone:* ${phone}%0A`;
-            text += `*Formation / Mateya:* ${program}%0A`;
+            text += `*Komini / Adresse:* ${address}%0A`;
+            text += `*Demande / Mokano:* ${program}%0A`;
             
             if (message.trim() !== "") {
                 text += `*Nsango / Message:* ${message}%0A`;
