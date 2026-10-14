@@ -595,6 +595,8 @@
             .social-links { flex-direction: column; align-items: center; }
             .faq-question { font-size: 0.95rem; }
         }
+
+.share-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px 0}.share-tools button,.share-tools a{font:inherit;border:1px solid #ccc;border-radius:8px;padding:10px 16px;background:white;color:#002D62;text-decoration:none;cursor:pointer}.share-tools button:focus-visible,.share-tools a:focus-visible{outline:3px solid #FFD700;outline-offset:3px}.share-status{text-align:center;min-height:1.6em}
     </style>
 </head>
 <body>
@@ -733,7 +735,12 @@
                 <p data-i18n="prog_manucure">Soins des ongles et prothèses ongulaires.</p>
             </div>
         </div>
-    </section>
+    <div class="share-tools" data-share="programs">
+ <a href="https://wa.me/?text=Formations%20%E2%80%94%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0AD%C3%A9couvrez%20nos%20formations%20professionnelles%20%C3%A0%20Kinshasa.%0Ahttps%3A%2F%2Fframaboasbl.org%2F%23programs" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+ <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2F%23programs" target="_blank" rel="noopener noreferrer">Facebook</a>
+ <button type="button" onclick="shareSection('programs')" data-i18n="share_other">Partager…</button>
+ <button type="button" onclick="copySection('programs')" data-i18n="share_copy">Copier le lien</button>
+ </div><p id="share-status-programs" class="share-status" role="status" aria-live="polite"></p></section>
 
     <!-- Event Section -->
     <section id="event" style="padding-top: 0;">
@@ -746,7 +753,12 @@
             
             <img src="affiche_graduation.jpg" alt="Affiche de la Graduation" class="event-poster">
         </div>
-    </section>
+    <p style="text-align:center"><a href="graduation.html" data-i18n="event_details">Voir l’annonce et la partager</a></p><div class="share-tools" data-share="event">
+ <a href="https://wa.me/?text=Premi%C3%A8re%20collation%20%E2%80%94%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0ASamedi%2031%20octobre%202026%20%C3%A0%2010%20h%20%E2%80%94%20Pavillon%2022%2C%20enceinte%20FIKIN%2C%20Kinshasa.%0Ahttps%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+ <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">Facebook</a>
+ <button type="button" onclick="shareSection('event')" data-i18n="share_other">Partager…</button>
+ <button type="button" onclick="copySection('event')" data-i18n="share_copy">Copier le lien</button>
+ </div><p id="share-status-event" class="share-status" role="status" aria-live="polite"></p></section>
 
     <!-- Partner Section -->
     <section class="partner-section">
@@ -862,7 +874,12 @@
                 </button>
             </form>
         </div>
-    </section>
+    <div class="share-tools" data-share="register">
+ <a href="https://wa.me/?text=Rejoignez%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0AEnvoyez%20votre%20demande%20de%20formation%2C%20de%20b%C3%A9n%C3%A9volat%20ou%20de%20partenariat%20via%20WhatsApp.%0Ahttps%3A%2F%2Fframaboasbl.org%2F%23register" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+ <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2F%23register" target="_blank" rel="noopener noreferrer">Facebook</a>
+ <button type="button" onclick="shareSection('register')" data-i18n="share_other">Partager…</button>
+ <button type="button" onclick="copySection('register')" data-i18n="share_copy">Copier le lien</button>
+ </div><p id="share-status-register" class="share-status" role="status" aria-live="polite"></p></section>
 
     <!-- Footer -->
     <footer>
@@ -937,6 +954,7 @@
                 form_program: "Je souhaite :", form_select: "-- Sélectionnez --", form_message: "Message (Optionnel)",
                 form_notice: "Ce formulaire prépare votre demande. Appuyez ensuite sur Envoyer dans WhatsApp. Votre inscription sera confirmée par notre équipe.",
                 form_course: "Formation souhaitée (si applicable)", course_none: "-- Non applicable / À préciser --", form_contact: "Destinataire WhatsApp",
+                share_other: "Partager…", share_copy: "Copier le lien", event_details: "Voir l’annonce et la partager",
                 form_submit: "Envoyer via WhatsApp"
             },
             ln: {
@@ -990,9 +1008,24 @@
                 form_program: "Nalingi :", form_select: "-- Pona --", form_message: "Nsango (Soki olingi)",
                 form_notice: "Formulaire oyo ebongisi demande na yo. Na WhatsApp, finá Envoyer mpo na kotinda yango. Équipe na biso ekondimisa inscription na yo.",
                 form_course: "Mateya oyo olingi (soki esengeli)", course_none: "-- Etali ngai te / Nakoyebisa --", form_contact: "Motángo ya WhatsApp",
+                share_other: "Kabola…", share_copy: "Kopiá lien", event_details: "Tala nsango mpe kabola yango",
                 form_submit: "Tinda na WhatsApp"
             }
         };
+
+
+const shareSections = {"event": {"url": "https://framaboasbl.org/graduation.html", "title": "Première collation — Fraternité Mont-Amba Bomoko", "text": "Samedi 31 octobre 2026 à 10 h — Pavillon 22, enceinte FIKIN, Kinshasa."}, "programs": {"url": "https://framaboasbl.org/#programs", "title": "Formations — Fraternité Mont-Amba Bomoko", "text": "Découvrez nos formations professionnelles à Kinshasa."}, "register": {"url": "https://framaboasbl.org/#register", "title": "Rejoignez Fraternité Mont-Amba Bomoko", "text": "Envoyez votre demande de formation, de bénévolat ou de partenariat via WhatsApp."}};
+function shareStatus(key, fr, ln) {document.getElementById('share-status-'+key).textContent=currentLang==='ln'?ln:fr;}
+async function copySection(key) {
+ const item=shareSections[key]; if(!item)return;
+ try {await navigator.clipboard.writeText(item.url);shareStatus(key,'Lien copié !','Lien ekopiamí !');}
+ catch {shareStatus(key,'Copiez ce lien : '+item.url,'Kopiá lien oyo : '+item.url);}
+}
+async function shareSection(key) {
+ const item=shareSections[key];if(!item)return;
+ if(!navigator.share){await copySection(key);return;}
+ try{await navigator.share(item);}catch(error){if(error.name!=='AbortError')await copySection(key);}
+}
 
         let currentLang = 'fr';
 
