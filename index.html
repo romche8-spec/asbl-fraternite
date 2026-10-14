@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASBL Fraternité Mont-Amba Bomoko</title>
+    <meta name="description" content="Découvrez les actions et formations de l’ASBL Fraternité Mont-Amba Bomoko à Kinshasa et envoyez votre demande d’inscription via WhatsApp.">
+    <link rel="canonical" href="https://framaboasbl.org/">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CD">
+    <meta property="og:title" content="ASBL Fraternité Mont-Amba Bomoko">
+    <meta property="og:description" content="Nos actions, nos formations et vos demandes d’inscription en ligne via WhatsApp.">
+    <meta property="og:url" content="https://framaboasbl.org/">
+    <meta property="og:image" content="https://framaboasbl.org/banniere.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome pour les icônes professionnelles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -631,11 +641,11 @@
                 <div class="president-quote">
                     <i class="fas fa-quote-left"></i>
                     <p data-i18n="president_msg">Chers membres et sympathisants, notre district de Mont-Amba possède un potentiel immense. Notre mission à travers cette ASBL est de transformer ce potentiel en réalité. Nous nous engageons à promouvoir la solidarité, à encadrer notre jeunesse et à assainir notre environnement. Rejoignez-nous dans cette noble cause pour bâtir un avenir meilleur.</p>
-                    <strong>Hardy Luka Ngoyi, <span data-i18n="president_title">Président de l'ASBL</span></strong>
+                    <strong>Hardy Luka Ngoy, <span data-i18n="president_title">Président de l'ASBL</span></strong>
                 </div>
             </div>
             <div class="about-image">
-                <img src="president.jpg" alt="Président Hardy Luka Ngoyi">
+                <img src="president.jpg" alt="Président Hardy Luka Ngoy">
             </div>
         </div>
     </section>
@@ -742,7 +752,7 @@
     <section class="partner-section">
         <h2 data-i18n="partner_title">Devenir Partenaire</h2>
         <p data-i18n="partner_desc">Vous êtes une entreprise, une ONG ou une institution ? Unissez vos forces aux nôtres pour un impact social durable à Mont-Amba. Ensemble, nous pouvons aller plus loin.</p>
-        <a href="https://wa.me/243896689871?text=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20de%20l'ASBL%20Fraternit%C3%A9%20Mont-Amba%20Bomoko" target="_blank" class="btn btn-partner">
+        <a href="https://wa.me/243896689871?text=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20de%20l'ASBL%20Fraternit%C3%A9%20Mont-Amba%20Bomoko" target="_blank" rel="noopener noreferrer" class="btn btn-partner">
             <i class="fas fa-handshake"></i> <span data-i18n="partner_btn">Discuter d'un Partenariat</span>
         </a>
     </section>
@@ -797,8 +807,9 @@
         <h2 class="section-title" data-i18n="map_title">Nous Trouver</h2>
         <div class="map-container">
             <!-- Carte Google Maps centrée sur FIKIN, Lemba, Kinshasa -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.262741002245!2d15.308825!3d-4.37625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a6a30f0f0f0f0f0%3A0x0!2sFIKIN!5e0!3m2!1sfr!2scd!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
+            <iframe title="Localisation de la FIKIN à Kinshasa" src="https://www.google.com/maps?q=FIKIN%2C%20Kinshasa%2C%20RDC&amp;output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+        <p style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&amp;query=FIKIN%2C%20Kinshasa%2C%20RDC" target="_blank" rel="noopener noreferrer">Ouvrir FIKIN dans Google Maps</a> — Pavillon 22, enceinte FIKIN, Kinshasa.</p>
     </section>
 
     <!-- Registration / Join Section -->
@@ -807,6 +818,7 @@
         <p style="text-align: center; margin-bottom: 2rem;" data-i18n="reg_subtitle">Que vous soyez habitant du Mont-Amba, partenaire de développement, ou simple citoyen désireux d'apporter votre pierre à l'édifice, votre place est à nos côtés.</p>
         
         <div class="form-container">
+            <p data-i18n="form_notice" style="margin-bottom:1rem">Ce formulaire prépare votre demande. Appuyez ensuite sur Envoyer dans WhatsApp. Votre inscription sera confirmée par notre équipe.</p>
             <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
                 <div class="form-group">
                     <label for="name" data-i18n="form_name">Nom complet</label>
@@ -831,6 +843,17 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="course" data-i18n="form_course">Formation souhaitée (si applicable)</label>
+                    <select id="course">
+                        <option value="" data-i18n="course_none">-- Non applicable / À préciser --</option>
+                        <option>Auto-école</option><option>Coupe et Couture</option><option>Esthétique</option><option>Coiffure</option><option>Manucure</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact" data-i18n="form_contact">Destinataire WhatsApp</label>
+                    <select id="contact"><option value="243896689871">+243 89 66 89 871</option><option value="243848415799">+243 84 84 15 799</option></select>
+                </div>
+                <div class="form-group">
                     <label for="message" data-i18n="form_message">Message (Optionnel)</label>
                     <textarea id="message" rows="3" placeholder="..."></textarea>
                 </div>
@@ -843,15 +866,17 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 ASBL FRATERNITÉ MONT-AMBA BOMOKO. Tous droits réservés.</p>
-        <p>Président: Hardy Luka Ngoyi</p>
+        <p>&copy; 2026 ASBL FRATERNITÉ MONT-AMBA BOMOKO. Tous droits réservés.</p>
+        <p>Président: Hardy Luka Ngoy</p>
         
+        <p>WhatsApp : <a style="color:inherit" href="https://wa.me/243848415799">+243 84 84 15 799</a> · <a style="color:inherit" href="https://wa.me/243896689871">+243 89 66 89 871</a></p>
+        <p><a style="color:inherit" href="mailto:framaboasbl@gmail.com">framaboasbl@gmail.com</a></p>
         <div class="social-links">
-            <a href="https://www.facebook.com/share/1Ct1VCFEpq/" target="_blank" class="social-btn facebook" aria-label="Facebook ASBL Framabo">
+            <a href="https://www.facebook.com/share/1Ct1VCFEpq/" target="_blank" rel="noopener noreferrer" class="social-btn facebook" aria-label="Facebook ASBL Framabo">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 <span>Facebook</span>
             </a>
-            <a href="https://www.instagram.com/asbl.framabo" target="_blank" class="social-btn instagram" aria-label="Instagram ASBL Framabo">
+            <a href="https://www.instagram.com/asbl.framabo" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram ASBL Framabo">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 <span>Instagram</span>
             </a>
@@ -910,12 +935,14 @@
                 reg_subtitle: "Que vous soyez habitant du Mont-Amba, partenaire de développement, ou simple citoyen désireux d'apporter votre pierre à l'édifice, votre place est à nos côtés.",
                 form_name: "Nom complet", form_phone: "Numéro de téléphone", form_address: "Commune / Adresse",
                 form_program: "Je souhaite :", form_select: "-- Sélectionnez --", form_message: "Message (Optionnel)",
+                form_notice: "Ce formulaire prépare votre demande. Appuyez ensuite sur Envoyer dans WhatsApp. Votre inscription sera confirmée par notre équipe.",
+                form_course: "Formation souhaitée (si applicable)", course_none: "-- Non applicable / À préciser --", form_contact: "Destinataire WhatsApp",
                 form_submit: "Envoyer via WhatsApp"
             },
             ln: {
                 nav_home: "Ndaku", nav_about: "Na ntina ya", nav_mission: "Mokano", nav_actions: "Misala", nav_programs: "Mateya", nav_faq: "FAQ", nav_register: "Kosangana",
                 hero_title: "ASBL Fraternité Mont-Amba Bomoko",
-                hero_subtitle: "Bomoko mpo na kobotama na bomengo na bolingo, mosala mpe botosi. Tika ete tobongisa bomoko na biso.",
+                hero_subtitle: "Tosangani mpo na kotonga lobi ya malamu na bolingo, mosala mpe discipline. Elongo, tobongisa bomoi ya bato na biso.",
                 hero_btn: "Boya kosangana na biso",
                 about_title: "Biso banani ?",
                 about_p1: "Boyeyi malamu na lokasa ya leta ya ASBL Fraternité Mont-Amba Bomoko, lingomba ya bolamu o kati ya distrike ya Mont-Amba na Kinshasa.",
@@ -943,7 +970,7 @@
                 programs_title: "Mateya na biso",
                 prog_auto: "Koyekola kotambwisa motuka mpe kozwa permis.", prog_couture: "Koyekola kosala bilamba ya kitoko.",
                 prog_esthetique: "Mateya ya kobongisa kitoko ya nzoto.", prog_coiffure: "Makoki ya sika ya kosala nsuki mpo na mibali mpe basi.",
-                prog_manucure: "Kobongisa manucure mpe misala ya minoko.",
+                prog_manucure: "Koyekola kobongisa nzala ya maboko mpe kotya nzala ya kosala.",
                 event_title: "Nsango ya ntina", event_subtitle: "Likita ya liboso - Remise ya ba diplômes",
                 event_desc: "Centre de Formation Professionnelle et de Métiers - ASBL Fraternité Mont Amba Bomoko esepeli koyebisa bino likita na yango ya liboso ya remise ya ba diplômes.",
                 event_date: "Mokolo : Samedi 31 Octobre 2026 na 10h00", event_location: "Esika : Pavillon 22, na kati ya FIKIN, Kinshasa",
@@ -958,9 +985,11 @@
                 faq_q4: "Mateya ezali na mbongo ?", faq_a4: "Lokola tozali ASBL, mateya na biso ezali na mbongo moke mpenza. Misala mosusu ya bolamu ezali ofele. Bende kosolola na biso mpo na makambo mingi.",
                 map_title: "Esika na biso",
                 reg_title: "Boya kosangana na biso !",
-                reg_subtitle: "Soki ozali mwasi ya Mont-Amba, moninga ya misala, to mwana ya mboka olingi kosunga, esika na yo ezali pembeni na biso.",
+                reg_subtitle: "Soki ozali moto ya Mont-Amba, moninga ya misala, to mwana ya mboka olingi kosunga, esika na yo ezali pembeni na biso.",
                 form_name: "Nkombo mobimba", form_phone: "Telefone", form_address: "Komini / Adresse",
                 form_program: "Nalingi :", form_select: "-- Pona --", form_message: "Nsango (Soki olingi)",
+                form_notice: "Formulaire oyo ebongisi demande na yo. Na WhatsApp, finá Envoyer mpo na kotinda yango. Équipe na biso ekondimisa inscription na yo.",
+                form_course: "Mateya oyo olingi (soki esengeli)", course_none: "-- Etali ngai te / Nakoyebisa --", form_contact: "Motángo ya WhatsApp",
                 form_submit: "Tinda na WhatsApp"
             }
         };
@@ -969,6 +998,7 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'ln' : 'fr';
+            document.documentElement.lang = currentLang;
             const elements = document.querySelectorAll('[data-i18n]');
             
             elements.forEach(element => {
@@ -995,22 +1025,21 @@
             const program = document.getElementById('program').value;
             const message = document.getElementById('message').value;
 
-            const coordinatorNumber = "243896689871";
-
-            let text = `*Nouvelle Demande / Lisungi ya sika*%0A%0A`;
-            text += `*Nkombo / Nom:* ${name}%0A`;
-            text += `*Telefone / Téléphone:* ${phone}%0A`;
-            text += `*Komini / Adresse:* ${address}%0A`;
-            text += `*Demande / Mokano:* ${program}%0A`;
-            
-            if (message.trim() !== "") {
-                text += `*Nsango / Message:* ${message}%0A`;
-            }
-
-            text += `%0A_Merci / Matondo !_`;
-
-            const whatsappUrl = `https://wa.me/${coordinatorNumber}?text=${text}`;
-            window.open(whatsappUrl, '_blank');
+            const coordinatorNumber = document.getElementById('contact').value;
+            if (!['243896689871', '243848415799'].includes(coordinatorNumber)) return;
+            const course = document.getElementById('course').value;
+            const lines = [
+                '*Nouvelle Demande / Lisungi ya sika*', '',
+                `*Nkombo / Nom:* ${name.trim()}`,
+                `*Telefone / Téléphone:* ${phone.trim()}`,
+                `*Komini / Adresse:* ${address.trim()}`,
+                `*Demande / Mokano:* ${program}`
+            ];
+            if (course) lines.push(`*Formation / Mateya:* ${course}`);
+            if (message.trim()) lines.push(`*Nsango / Message:* ${message.trim()}`);
+            lines.push('', '_Merci / Matondo !_');
+            const whatsappUrl = `https://wa.me/${coordinatorNumber}?text=${encodeURIComponent(lines.join('\n'))}`;
+            window.location.assign(whatsappUrl);
         }
     </script>
 </body>
