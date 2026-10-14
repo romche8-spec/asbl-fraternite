@@ -1,12 +1,10 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Première collation — Fraternité Mont-Amba Bomoko</title>
 <meta name="description" content="Cérémonie de remise des diplômes, samedi 31 octobre 2026 à 10 h, Pavillon 22, enceinte FIKIN, Kinshasa.">
 <link rel="canonical" href="https://framaboasbl.org/graduation.html"><link rel="icon" href="logo.png">
-<meta property="og:type" content="website"><meta property="og:title" content="Première collation — Fraternité Mont-Amba Bomoko"><meta property="og:description" content="Samedi 31 octobre 2026 à 10 h — Pavillon 22, enceinte FIKIN, Kinshasa."><meta property="og:url" content="https://framaboasbl.org/graduation.html"><meta property="og:image" content="https://framaboasbl.org/affiche_graduation.jpg"><meta property="og:image:alt" content="Affiche de la première collation de Fraternité Mont-Amba Bomoko"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website"><meta property="og:title" content="Première collation — Fraternité Mont-Amba Bomoko"><meta property="og:description" content="Samedi 31 octobre 2026 à 10 h — Pavillon 22, enceinte FIKIN, Kinshasa."><meta property="og:url" content="https://framaboasbl.org/graduation.html"><meta property="og:image" content="https://framaboasbl.org/affiche_graduation.jpg"><meta property="og:image:alt" content="Affiche de la première collation de Fraternité Mont-Amba Bomoko"><meta property="og:image:secure_url" content="https://framaboasbl.org/affiche_graduation.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1024"><meta property="og:image:height" content="1536"><meta name="twitter:image" content="https://framaboasbl.org/affiche_graduation.jpg"><meta name="twitter:card" content="summary_large_image">
 <style>body{margin:0;background:#f5f7fb;color:#002D62;font:17px/1.6 system-ui}header{background:#002D62;color:white;padding:24px;text-align:center}main{max-width:850px;margin:auto;padding:24px}h1{line-height:1.2}a{color:inherit}img{max-width:100%;height:auto;border-radius:12px}.card{background:white;border-radius:12px;padding:24px;margin:20px 0}
 .share-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px 0}.share-tools button,.share-tools a{font:inherit;border:1px solid #ccc;border-radius:8px;padding:10px 16px;background:white;color:#002D62;text-decoration:none;cursor:pointer}.share-tools button:focus-visible,.share-tools a:focus-visible{outline:3px solid #FFD700;outline-offset:3px}.share-status{text-align:center;min-height:1.6em}
 </style></head><body><header><a href="index.html">← Site officiel • Fraternité Mont-Amba Bomoko</a></header><main><h1>Première collation</h1><h2>Cérémonie de remise des diplômes</h2><p>Célébrons la réussite de nos jeunes !</p><div class="card"><strong>Samedi 31 octobre 2026 à 10 h</strong><p>Pavillon 22, enceinte FIKIN, Kinshasa.</p><p>Président Hardy Luka Ngoy — Chevalier de Mont-Amba</p></div><img src="affiche_graduation.jpg" alt="Affiche de la première collation avec le Président Hardy Luka Ngoy et une illustration de jeunes diplômés"><div class="share-tools" data-share="event">
- <a href="https://wa.me/?text=Premi%C3%A8re%20collation%20%E2%80%94%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0ASamedi%2031%20octobre%202026%20%C3%A0%2010%20h%20%E2%80%94%20Pavillon%2022%2C%20enceinte%20FIKIN%2C%20Kinshasa.%0Ahttps%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
- <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">Facebook</a>
  <button type="button" onclick="shareSection('event')" data-i18n="share_other">Partager…</button>
  <button type="button" onclick="copySection('event')" data-i18n="share_copy">Copier le lien</button>
  </div><p id="share-status-event" class="share-status" role="status" aria-live="polite"></p><div class="card"><h2>Nous contacter</h2><p><a href="https://wa.me/243848415799">WhatsApp : +243 84 84 15 799</a><br><a href="https://wa.me/243896689871">WhatsApp : +243 89 66 89 871</a></p><a href="index.html#register">Envoyer une demande d’inscription</a><p>Le site principal est disponible en français et en lingala.</p></div></main><script>let currentLang='fr';
@@ -17,9 +15,33 @@ async function copySection(key) {
  try {await navigator.clipboard.writeText(item.url);shareStatus(key,'Lien copié !','Lien ekopiamí !');}
  catch {shareStatus(key,'Copiez ce lien : '+item.url,'Kopiá lien oyo : '+item.url);}
 }
+let graduationPosterFile = null;
+// Load the poster before a click so the native share sheet keeps user activation.
+if (navigator.share && navigator.canShare) {
+ fetch('affiche_graduation.jpg').then(response => {
+  if (!response.ok) throw new Error('Poster unavailable');
+  return response.blob();
+ }).then(blob => {
+  if (!blob.type.startsWith('image/')) return;
+  const file = new File([blob], 'affiche_graduation.jpg', {type: blob.type});
+  if (navigator.canShare({files: [file]})) graduationPosterFile = file;
+ }).catch(() => {});
+}
 async function shareSection(key) {
  const item=shareSections[key];if(!item)return;
  if(!navigator.share){await copySection(key);return;}
- try{await navigator.share(item);}catch(error){if(error.name!=='AbortError')await copySection(key);}
+ const payload = key === 'event' && graduationPosterFile
+  ? {title: item.title, text: item.text + '\n' + item.url, files: [graduationPosterFile]}
+  : item;
+ try {await navigator.share(payload);}
+ catch(error) {
+  if(error.name==='AbortError') return;
+  if(payload.files) {
+   try {await navigator.share(item);return;}
+   catch(fallbackError) {if(fallbackError.name==='AbortError')return;}
+  }
+  await copySection(key);
+ }
 }
+
 </script></body></html>

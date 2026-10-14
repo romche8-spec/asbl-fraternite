@@ -736,8 +736,6 @@
             </div>
         </div>
     <div class="share-tools" data-share="programs">
- <a href="https://wa.me/?text=Formations%20%E2%80%94%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0AD%C3%A9couvrez%20nos%20formations%20professionnelles%20%C3%A0%20Kinshasa.%0Ahttps%3A%2F%2Fframaboasbl.org%2F%23programs" target="_blank" rel="noopener noreferrer">WhatsApp</a>
- <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2F%23programs" target="_blank" rel="noopener noreferrer">Facebook</a>
  <button type="button" onclick="shareSection('programs')" data-i18n="share_other">Partager…</button>
  <button type="button" onclick="copySection('programs')" data-i18n="share_copy">Copier le lien</button>
  </div><p id="share-status-programs" class="share-status" role="status" aria-live="polite"></p></section>
@@ -754,8 +752,6 @@
             <img src="affiche_graduation.jpg" alt="Affiche de la Graduation" class="event-poster">
         </div>
     <p style="text-align:center"><a href="graduation.html" data-i18n="event_details">Voir l’annonce et la partager</a></p><div class="share-tools" data-share="event">
- <a href="https://wa.me/?text=Premi%C3%A8re%20collation%20%E2%80%94%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0ASamedi%2031%20octobre%202026%20%C3%A0%2010%20h%20%E2%80%94%20Pavillon%2022%2C%20enceinte%20FIKIN%2C%20Kinshasa.%0Ahttps%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">WhatsApp</a>
- <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2Fgraduation.html" target="_blank" rel="noopener noreferrer">Facebook</a>
  <button type="button" onclick="shareSection('event')" data-i18n="share_other">Partager…</button>
  <button type="button" onclick="copySection('event')" data-i18n="share_copy">Copier le lien</button>
  </div><p id="share-status-event" class="share-status" role="status" aria-live="polite"></p></section>
@@ -875,8 +871,6 @@
             </form>
         </div>
     <div class="share-tools" data-share="register">
- <a href="https://wa.me/?text=Rejoignez%20Fraternit%C3%A9%20Mont-Amba%20Bomoko%0AEnvoyez%20votre%20demande%20de%20formation%2C%20de%20b%C3%A9n%C3%A9volat%20ou%20de%20partenariat%20via%20WhatsApp.%0Ahttps%3A%2F%2Fframaboasbl.org%2F%23register" target="_blank" rel="noopener noreferrer">WhatsApp</a>
- <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fframaboasbl.org%2F%23register" target="_blank" rel="noopener noreferrer">Facebook</a>
  <button type="button" onclick="shareSection('register')" data-i18n="share_other">Partager…</button>
  <button type="button" onclick="copySection('register')" data-i18n="share_copy">Copier le lien</button>
  </div><p id="share-status-register" class="share-status" role="status" aria-live="polite"></p></section>
@@ -1021,11 +1015,35 @@ async function copySection(key) {
  try {await navigator.clipboard.writeText(item.url);shareStatus(key,'Lien copié !','Lien ekopiamí !');}
  catch {shareStatus(key,'Copiez ce lien : '+item.url,'Kopiá lien oyo : '+item.url);}
 }
+let graduationPosterFile = null;
+// Load the poster before a click so the native share sheet keeps user activation.
+if (navigator.share && navigator.canShare) {
+ fetch('affiche_graduation.jpg').then(response => {
+  if (!response.ok) throw new Error('Poster unavailable');
+  return response.blob();
+ }).then(blob => {
+  if (!blob.type.startsWith('image/')) return;
+  const file = new File([blob], 'affiche_graduation.jpg', {type: blob.type});
+  if (navigator.canShare({files: [file]})) graduationPosterFile = file;
+ }).catch(() => {});
+}
 async function shareSection(key) {
  const item=shareSections[key];if(!item)return;
  if(!navigator.share){await copySection(key);return;}
- try{await navigator.share(item);}catch(error){if(error.name!=='AbortError')await copySection(key);}
+ const payload = key === 'event' && graduationPosterFile
+  ? {title: item.title, text: item.text + '\n' + item.url, files: [graduationPosterFile]}
+  : item;
+ try {await navigator.share(payload);}
+ catch(error) {
+  if(error.name==='AbortError') return;
+  if(payload.files) {
+   try {await navigator.share(item);return;}
+   catch(fallbackError) {if(fallbackError.name==='AbortError')return;}
+  }
+  await copySection(key);
+ }
 }
+
 
         let currentLang = 'fr';
 
